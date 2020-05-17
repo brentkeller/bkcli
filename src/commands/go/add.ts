@@ -27,7 +27,8 @@ go to shortcut named <name> to the path <path>
     if (args.name) {
       const data = await this.getData();
       if (!data.shortcuts) data.shortcuts = {};
-      const shortcutPath = args.path ?? 'c:\\dev';
+      // Use the provided path, with a fallback to the current working directory
+      const shortcutPath = args.path ?? process.cwd();
       data.shortcuts[args.name] = shortcutPath;
       await this.writeData(data);
       this.log(`added ${args.name}: ${shortcutPath}`);

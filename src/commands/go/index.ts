@@ -22,12 +22,13 @@ go to shortcut named 'name'
 
     const data = await this.getData();
     if (!data.shortcuts) data.shortcuts = {};
-    this.log(this.config.dataDir, data);
-
     if (args.name) {
-      this.log(`goto ${args.name}`);
-      const shortcut = data.shortcuts[args.name];
-      this.log(shortcut);
+      const shortcutPath = data.shortcuts[args.name];
+      // See if we have a valid shortcut
+      if (shortcutPath?.length > 0) {
+        // Log out the shortcut destination for the shell script to use
+        this.log(shortcutPath);
+      }
     } else {
       this.listShortcuts(data);
     }

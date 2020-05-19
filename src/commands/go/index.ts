@@ -51,7 +51,7 @@ go to shortcut named 'name'
         this.log('.');
       }
     } else {
-      this.listShortcuts(data.shortcuts, flags);
+      this.listShortcuts(data.shortcuts);
     }
   }
 }

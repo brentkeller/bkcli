@@ -28,6 +28,5 @@ export const getShortcuts = (dictionary: Shortcuts) => {
       } as Shortcut;
     })
     .sort(compareNames);
-  // TODO: Allow filtering by name or path?
   return shortcuts;
 };

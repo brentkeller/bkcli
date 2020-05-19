@@ -18,11 +18,16 @@ export default abstract class extends Command {
     }
   }
 
-  listShortcuts(dictionary: Shortcuts, flags: any) {
-    const shortcuts = getShortcuts(dictionary);
-    // TODO: Allow filtering by name or path?
+  listShortcuts(dictionary: Shortcuts, flags?: any) {
+    let shortcuts = getShortcuts(dictionary);
+    if (flags.name) {
+      shortcuts = shortcuts.filter(s => s.name.includes(flags.name));
+    }
+    if (flags.path) {
+      shortcuts = shortcuts.filter(s => s.path.includes(flags.path));
+    }
     if (shortcuts.length === 0) {
-      this.log('No shortcuts saved');
+      this.log('No shortcuts found');
       return;
     }
     this.log('Available shortcuts:');

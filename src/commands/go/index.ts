@@ -1,5 +1,4 @@
 import { flags } from '@oclif/command';
-import { cli } from 'cli-ux';
 import GoCommand from '../../go/go-command';
 
 /*
@@ -52,34 +51,7 @@ go to shortcut named 'name'
         this.log('.');
       }
     } else {
-      this.listShortcuts(data);
+      this.listShortcuts(data.shortcuts, flags);
     }
-  }
-
-  listShortcuts(data: any) {
-    const entries = Object.entries(data.shortcuts);
-    // TODO: Alphabetize by shortcut name
-    // TODO: Allow filtering by name or path?
-    if (entries.length === 0) {
-      this.log('No shortcuts saved');
-      return;
-    }
-    this.log('Available shortcuts:');
-    cli.table(
-      entries,
-      {
-        name: {
-          get: row => row[0],
-          minWidth: 7,
-        },
-        path: {
-          get: row => row[1],
-        },
-      },
-      {
-        printLine: this.log,
-        ...flags, // parsed flags
-      },
-    );
   }
 }

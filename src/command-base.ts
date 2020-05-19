@@ -1,20 +1,15 @@
 import Command from '@oclif/command';
-import * as fse from 'fs-extra';
 import * as path from 'path';
+import { getJsonFromFile, writeJsonToFile } from './util/file';
 
 export default abstract class extends Command {
+  dataFilePath = path.join(this.config.dataDir, 'data.json');
+
   async getData() {
-    const dataPath = path.join(this.config.dataDir, 'data.json');
-    try {
-      await fse.ensureFile(dataPath);
-      return await fse.readJSON(dataPath);
-    } catch (error) {
-      this.log('error');
-      return {};
-    }
+    return getJsonFromFile(this.dataFilePath);
   }
 
   async writeData(data: any) {
-    await fse.writeJSON(path.join(this.config.dataDir, 'data.json'), data);
+    await writeJsonToFile(this.dataFilePath, data);
   }
 }

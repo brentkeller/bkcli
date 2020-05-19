@@ -1,6 +1,6 @@
 import { flags } from '@oclif/command';
 import { cli } from 'cli-ux';
-import Command from '../../command-base';
+import GoCommand from '../../go/go-command';
 
 /*
 Requires a shell-level script to navigate the working directory to the shortcut.
@@ -22,7 +22,7 @@ or
 
 */
 
-export default class Go extends Command {
+export default class Go extends GoCommand {
   static description = 'create shortcuts and jump to directories by name';
 
   static examples = [
@@ -41,7 +41,6 @@ go to shortcut named 'name'
     const { args } = this.parse(Go);
 
     const data = await this.getData();
-    if (!data.shortcuts) data.shortcuts = {};
     if (args.name) {
       const shortcutPath = data.shortcuts[args.name];
       // See if we have a valid shortcut

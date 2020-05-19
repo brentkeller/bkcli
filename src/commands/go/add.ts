@@ -1,7 +1,7 @@
 import { flags } from '@oclif/command';
-import Command from '../../command-base';
+import GoCommand from '../../go/go-command';
 
-export default class Add extends Command {
+export default class Add extends GoCommand {
   static description = 'create a shortcut';
 
   static examples = [
@@ -22,11 +22,8 @@ go to shortcut named <name> to the path <path>
   async run() {
     const { args } = this.parse(Add);
 
-    // TODO: Validate name
-    // TODO: Validate path
     if (args.name) {
       const data = await this.getData();
-      if (!data.shortcuts) data.shortcuts = {};
       // Use the provided path, with a fallback to the current working directory
       const shortcutPath = args.path ?? process.cwd();
       data.shortcuts[args.name] = shortcutPath;

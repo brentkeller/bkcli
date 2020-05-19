@@ -6,11 +6,11 @@ export default class Add extends GoCommand {
 
   static examples = [
     `$ bk go:add <name>
-go to shortcut named <name>
+add a shortcut named <name> pointing to the current directory
 `,
     `$ bk go:add <name> <path>
-go to shortcut named <name> to the path <path>
-`,
+add a shortcut named <name> pointing to the <path> directory
+    `,
   ];
 
   static flags = {

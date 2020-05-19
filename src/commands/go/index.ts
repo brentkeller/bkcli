@@ -47,6 +47,9 @@ go to shortcut named 'name'
       if (shortcutPath?.length > 0) {
         // Log out the shortcut destination for the shell script to use
         this.log(shortcutPath);
+      } else {
+        // Log out the current directory to not move anywhere
+        this.log('.');
       }
     } else {
       this.listShortcuts(data);

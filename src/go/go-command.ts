@@ -11,10 +11,10 @@ export default abstract class extends Command {
 
   listShortcuts(dictionary: Shortcuts, flags?: any) {
     let shortcuts = getShortcuts(dictionary);
-    if (flags.name) {
+    if (flags?.name) {
       shortcuts = shortcuts.filter(s => s.name.includes(flags.name));
     }
-    if (flags.path) {
+    if (flags?.path) {
       shortcuts = shortcuts.filter(s => s.path.includes(flags.path));
     }
     if (shortcuts.length === 0) {

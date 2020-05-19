@@ -12,7 +12,7 @@ TODO: Add goto.ps1 content here?
 1. Create a script (see c:\dev\scripts\goto.ps1)
 2. Add the script with an alias to the user's profile:
 - C:\Users\brent\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1
-or 
+or
 - C:\Users\brent\Documents\WindowsPowerShell\profile.ps1
 2a.
     # GO (requires bkcli installed or linked (npm link))

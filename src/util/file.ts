@@ -10,6 +10,10 @@ export const getJsonFromFile = async (filepath: string) => {
   }
 };
 
+export const fileExists = (filepath: string) => {
+  return fse.existsSync(filepath);
+};
+
 export const writeJsonToFile = async (filepath: string, data: any) => {
   await fse.writeJSON(filepath, data);
 };

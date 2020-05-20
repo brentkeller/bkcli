@@ -1,19 +1,26 @@
-bkcli
-=====
+# bkcli
 
 Helpful personal CLI
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/bkcli.svg)](https://npmjs.org/package/bkcli)
-[![Downloads/week](https://img.shields.io/npm/dw/bkcli.svg)](https://npmjs.org/package/bkcli)
+
+<!-- [![Version](https://img.shields.io/npm/v/bkcli.svg)](https://npmjs.org/package/bkcli) -->
+<!-- [![Downloads/week](https://img.shields.io/npm/dw/bkcli.svg)](https://npmjs.org/package/bkcli) -->
+
 [![License](https://img.shields.io/npm/l/bkcli.svg)](https://github.com/brentkeller/bkcli/blob/master/package.json)
 
 <!-- toc -->
-* [Usage](#usage)
-* [Commands](#commands)
+<!--
+- [Usage](#usage) -->
+
+- [Commands](#commands)
 <!-- tocstop -->
+
+<!-- usage
+
 # Usage
-<!-- usage -->
+
+
 ```sh-session
 $ npm install -g bkcli
 $ bk COMMAND
@@ -25,12 +32,15 @@ USAGE
   $ bk COMMAND
 ...
 ```
+-->
 <!-- usagestop -->
+
 # Commands
+
 <!-- commands -->
-* [`bk go [FILE]`](#bk-go-file)
-* [`bk hello [FILE]`](#bk-hello-file)
-* [`bk help [COMMAND]`](#bk-help-command)
+
+- [`bk go [FILE]`](#bk-go-file)
+- [`bk help [COMMAND]`](#bk-help-command)
 
 ## `bk go [FILE]`
 
@@ -48,26 +58,6 @@ OPTIONS
 
 _See code: [src\commands\go.ts](https://github.com/brentkeller/bkcli/blob/v0.0.0/src\commands\go.ts)_
 
-## `bk hello [FILE]`
-
-describe the command here
-
-```
-USAGE
-  $ bk hello [FILE]
-
-OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
-
-EXAMPLE
-  $ bk hello
-  hello world from ./src/hello.ts!
-```
-
-_See code: [src\commands\hello.ts](https://github.com/brentkeller/bkcli/blob/v0.0.0/src\commands\hello.ts)_
-
 ## `bk help [COMMAND]`
 
 display help for bk
@@ -84,4 +74,5 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.0.0/src\commands\help.ts)_
+
 <!-- commandsstop -->

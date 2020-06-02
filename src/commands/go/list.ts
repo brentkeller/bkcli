@@ -6,16 +6,16 @@ export default class List extends GoCommand {
 
   static examples = [
     `$ bk go:list
-list available shortcuts
+list all shortcuts
 `,
     `$ bk go:list -n st
-list available shortcuts whose name contains 'st'
+list shortcuts whose name contains 'st'
 `,
     `$ bk go:list -p dev
-list available shortcuts whose path contains 'dev'
+list shortcuts whose path contains 'dev'
 `,
     `$ bk go:list -n st -p dev
-list available shortcuts whose name contains 'st AND path contains 'dev'
+list shortcuts whose name contains 'st' AND path contains 'dev'
 `,
   ];
 

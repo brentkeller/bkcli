@@ -76,3 +76,7 @@ OPTIONS
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.0.0/src\commands\help.ts)_
 
 <!-- commandsstop -->
+
+# Prior Art
+
+I ran into some hangups with the `go` feature and the idea for outputting the shortcut path for use via shell scripts was inspired by [golumbus](https://github.com/jverhoelen/golumbus) by [Jonas Verhoelen](https://github.com/jverhoelen).

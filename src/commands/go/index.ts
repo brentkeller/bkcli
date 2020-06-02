@@ -22,11 +22,12 @@ or
 */
 
 export default class Go extends GoCommand {
-  static description = 'create shortcuts and jump to directories by name';
+  static description = 'manage working directory shortcuts';
 
   static examples = [
     `$ bk go <name>
-go to shortcut named 'name'
+prints the path for the shortcut named 'name'
+Should be used by a shell script to make navigation shortcuts
 `,
   ];
 

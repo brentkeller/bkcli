@@ -1,3 +1,4 @@
+import { flags } from '@oclif/command';
 import GoCommand from '../../go/go-command';
 
 export default class Remove extends GoCommand {
@@ -10,6 +11,10 @@ remove the shortcut named <name>
   ];
 
   static args = [{ name: 'name' }];
+
+  static flags = {
+    help: flags.help({ char: 'h' }),
+  };
 
   async run() {
     const { args } = this.parse(Remove);

@@ -51,7 +51,6 @@ USAGE
   $ bk go [FILE]
 
 OPTIONS
-  -f, --force
   -h, --help       show CLI help
   -n, --name=name  name to print
 ```
@@ -60,7 +59,7 @@ _See code: [src\commands\go.ts](https://github.com/brentkeller/bkcli/blob/v0.0.0
 
 ## `bk help [COMMAND]`
 
-display help for bk
+display help
 
 ```
 USAGE

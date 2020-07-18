@@ -49,6 +49,7 @@ export default class Pom extends PomCommand {
     clearInterval(self.currentTimer);
     self.writeUpdate('Session finished!');
     // TODO: Persist session info to log
+    // const log = session.getLog();
   }
 
   notify(title: string, message: string) {

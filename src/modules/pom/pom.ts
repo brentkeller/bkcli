@@ -6,6 +6,7 @@ export interface SessionConfig {
   task?: string;
   category?: string;
   quiet?: boolean;
+  noLog?: boolean;
 }
 
 interface SessionProgress {
@@ -15,6 +16,14 @@ interface SessionProgress {
   remainingSecs: number;
   soundAlert: boolean;
   finished: boolean;
+}
+
+interface SessionLog {
+  start: Date;
+  task?: string;
+  category?: string;
+  sessionLength: number;
+  breakLength: number;
 }
 
 export class PomSession {
@@ -32,6 +41,8 @@ export class PomSession {
 
   quiet = false;
 
+  logSession = true;
+
   currentMode: 'session' | 'break' = 'session';
 
   constructor(config: SessionConfig) {
@@ -44,6 +55,7 @@ export class PomSession {
     this.task = config.task;
     this.category = config.category;
     if (config.quiet) this.quiet = config.quiet;
+    this.logSession = !config.noLog;
   }
 
   getProgress(): SessionProgress {
@@ -71,6 +83,16 @@ export class PomSession {
       this.currentMode = 'break';
     }
     return result;
+  }
+
+  getLog() {
+    return {
+      start: this.start,
+      task: this.task,
+      category: this.category,
+      sessionLength: this.sessionLength,
+      breakLength: this.breakLength,
+    } as SessionLog;
   }
 }
 

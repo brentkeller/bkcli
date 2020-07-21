@@ -38,6 +38,10 @@ export default class Pom extends PomCommand {
       char: 'n',
       description: "no log: don't persist this session after it ends",
     }),
+    debug: flags.boolean({
+      char: 'd',
+      description: 'debug mode: use 5 second session & break length for rapid testing',
+    }),
   };
 
   currentTimer?: NodeJS.Timeout = undefined;
@@ -60,6 +64,7 @@ export default class Pom extends PomCommand {
       category: flags.category,
       quiet: flags.quiet,
       noLog: flags.noLog,
+      debug: flags.debug,
     });
     this.currentTimer = setInterval(this.processTick, 500, session, this);
   }

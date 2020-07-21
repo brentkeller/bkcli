@@ -7,6 +7,7 @@ export interface SessionConfig {
   category?: string;
   quiet?: boolean;
   noLog?: boolean;
+  debug?: boolean;
 }
 
 interface SessionProgress {
@@ -43,13 +44,17 @@ export class PomSession {
 
   logSession = true;
 
+  debug = false;
+
   currentMode: 'session' | 'break' = 'session';
 
   constructor(config: SessionConfig) {
     this.start = new Date();
-    // this.end = add(this.start, { minutes: config.sessionMins });
-    // Debug timing
-    this.end = add(this.start, { seconds: 5 });
+    this.end = add(this.start, { minutes: config.sessionMins });
+    if (config.debug) {
+      this.debug = true;
+      this.end = add(this.start, { seconds: 5 });
+    }
     this.sessionLength = config.sessionMins;
     this.breakLength = config.breakMins;
     this.task = config.task;
@@ -78,8 +83,8 @@ export class PomSession {
       mode: this.currentMode,
     } as SessionProgress;
     if (this.currentMode === 'session' && remainingMins === 0 && remainingSecs === 0) {
-      // Debug break timer
-      this.end = add(new Date(), { seconds: 5 });
+      this.end = add(new Date(), { minutes: this.breakLength });
+      if (this.debug) this.end = add(new Date(), { seconds: 5 });
       this.currentMode = 'break';
     }
     return result;

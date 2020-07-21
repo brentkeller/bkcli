@@ -15,18 +15,51 @@ export default class Pom extends PomCommand {
 `,
   ];
 
+  static args = [
+    { name: 'session', description: 'length of the session in minutes', required: true },
+    { name: 'break', description: 'length of the post-session break in minutes', required: true },
+  ];
+
   static flags = {
-    help: flags.help({ char: 'h' }),
+    help: flags.help({ char: 'h', description: 'show help for this command' }),
+    task: flags.string({
+      char: 't',
+      description: 'description of work being done in this session',
+    }),
+    category: flags.string({
+      char: 'c',
+      description: 'name of category to group sessions together',
+    }),
+    quiet: flags.boolean({
+      char: 'q',
+      description: 'quiet mode: no alert when the session or break end',
+    }),
+    noLog: flags.boolean({
+      char: 'n',
+      description: "no log: don't persist this session after it ends",
+    }),
   };
 
   currentTimer?: NodeJS.Timeout = undefined;
 
   async run() {
-    // TODO: Get session config from args or inquirer
-    // const { args } = this.parse(Pom);
+    const { args, flags } = this.parse(Pom);
+
+    // Validate flags
+    if (!args.session || args.session < 1) {
+      this.error('Session length is required!');
+    }
+    if (!args.break || args.break < 1) {
+      this.error('Break length is required!');
+    }
+
     const session = new PomSession({
-      sessionMins: 1,
-      breakMins: 1,
+      sessionMins: parseInt(args.session, 10),
+      breakMins: parseInt(args.break, 10),
+      task: flags.task,
+      category: flags.category,
+      quiet: flags.quiet,
+      noLog: flags.noLog,
     });
     this.currentTimer = setInterval(this.processTick, 500, session, this);
   }

@@ -61,7 +61,7 @@ export class PomSession {
   getProgress(): SessionProgress {
     const currentTime = new Date();
     const remainingMins = differenceInMinutes(this.end, currentTime);
-    const remainingSecs = differenceInSeconds(this.end, currentTime);
+    const remainingSecs = differenceInSeconds(this.end, currentTime) % 60;
 
     const label = this.currentMode === 'session' ? 'Session' : 'Break';
     const text = `${label} remaining: ${remainingMins}:${remainingSecs

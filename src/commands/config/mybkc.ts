@@ -33,6 +33,7 @@ TODO: Document this
 
     if (flags.new) {
       const newProfile = await this.mybkc.newProfile();
+      await this.mybkc.setCurrentProfile(newProfile);
       this.log('new profile:');
       this.printProfile(newProfile);
     }

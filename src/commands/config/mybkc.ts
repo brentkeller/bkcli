@@ -40,6 +40,15 @@ TODO: Document this
       this.log('Current profile:');
       this.printProfile(current);
     }
+
+    if (flags.list) {
+      for (const key in mybkc.config.profiles) {
+        if ({}.hasOwnProperty.call(mybkc.config.profiles, key)) {
+          const profile = mybkc.config.profiles[key];
+          this.printProfile(profile);
+        }
+      }
+    }
   }
 
   printProfile(config: MyBKCProfile) {

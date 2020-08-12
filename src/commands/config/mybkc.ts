@@ -13,9 +13,7 @@ TODO: Document this
 
   static flags = {
     help: flags.help({ char: 'h' }),
-    // TODO: implement config:mybkc delete
     delete: flags.string({ char: 'd', description: 'delete a profile' }),
-    // TODO: implement config:mybkc list
     list: flags.boolean({ char: 'l', description: 'list available profiles' }),
     new: flags.boolean({ char: 'n', description: 'add a new profile' }),
     // TODO: implement config:mybkc refresh
@@ -41,6 +39,14 @@ TODO: Document this
 
     if (flags.current) {
       await this.showCurrentProfile();
+    }
+
+    if (flags.delete) {
+      const removed = await this.mybkc.removeProfile(flags.delete);
+      const message = removed
+        ? `Removed profile '${flags.delete}'`
+        : `Profile '${flags.delete}' not deleted!`;
+      this.log(message);
     }
 
     if (flags.list) {

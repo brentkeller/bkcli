@@ -71,6 +71,15 @@ export class MyBKC {
     };
   }
 
+  async removeProfile(name: string) {
+    if (this.config.profiles?.[name]) {
+      delete this.config.profiles?.[name];
+      await this.saveConfig();
+      return true;
+    }
+    return false;
+  }
+
   async setCurrentProfile(profile: MyBKCProfile) {
     this.config.currentProfile = profile.name;
     this.config.profiles[profile.name] = profile;

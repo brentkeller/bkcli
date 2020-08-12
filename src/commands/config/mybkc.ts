@@ -38,9 +38,7 @@ TODO: Document this
     }
 
     if (flags.current) {
-      const current = await mybkc.getProfile(mybkc.config.currentProfile);
-      this.log('Current profile:');
-      this.printProfile(current);
+      await this.showCurrentProfile();
     }
 
     if (flags.list) {
@@ -53,10 +51,17 @@ TODO: Document this
         }
       }
     }
+
+  async showCurrentProfile() {
+    const current = await this.mybkc?.getProfile(this.mybkc.config.currentProfile);
+    this.log('Current profile:');
+    this.printProfile(current);
   }
 
-  printProfile(config: MyBKCProfile) {
+  printProfile(config?: MyBKCProfile) {
+    if (!config) return;
     this.log(`Name: ${config.name}`);
     this.log(`Url: ${config.url}`);
+    this.log('');
   }
 }

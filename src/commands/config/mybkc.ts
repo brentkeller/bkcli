@@ -21,6 +21,7 @@ TODO: Document this
     // TODO: implement config:mybkc refresh
     refresh: flags.string({ char: 'r', description: 'refresh authentication for a profile' }),
     current: flags.boolean({ char: 'c', description: 'show the current profile' }),
+    set: flags.string({ char: 's', description: 'set the current profile' }),
   };
 
   mybkc?: MyBKC;
@@ -52,6 +53,15 @@ TODO: Document this
         }
       }
     }
+
+    if (flags.set) {
+      const profile = await this.mybkc.getProfile(flags.set);
+      if (profile) {
+        await this.mybkc.setCurrentProfile(profile);
+        await this.showCurrentProfile();
+      }
+    }
+  }
 
   async showCurrentProfile() {
     const current = await this.mybkc?.getProfile(this.mybkc.config.currentProfile);

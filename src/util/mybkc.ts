@@ -93,7 +93,12 @@ export class MyBKC {
       headers: { 'Content-Type': 'application/json' },
     });
     // node-fetch allows raw access to the set-cookie header
-    return response.headers.raw()['set-cookie'][0];
+    let authCookie;
+    response.headers.raw()['set-cookie'].forEach((c: string) => {
+      if (c.includes('Authorization=')) authCookie = c;
+    });
+    if (!authCookie) throw new Error('Could not authenticate!');
+    return authCookie;
   }
 
   async makeRequest(url: string, options: FetchParams) {

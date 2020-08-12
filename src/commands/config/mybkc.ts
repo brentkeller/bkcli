@@ -23,14 +23,16 @@ TODO: Document this
     current: flags.boolean({ char: 'c', description: 'show the current profile' }),
   };
 
+  mybkc?: MyBKC;
+
   async run() {
     const { flags } = this.parse(MyBKCIndex);
 
-    const mybkc = new MyBKC(this.config.dataDir);
-    await mybkc.init();
+    this.mybkc = new MyBKC(this.config.dataDir);
+    await this.mybkc.init();
 
     if (flags.new) {
-      const newProfile = await mybkc.newProfile();
+      const newProfile = await this.mybkc.newProfile();
       this.log('new profile:');
       this.printProfile(newProfile);
     }
@@ -42,9 +44,11 @@ TODO: Document this
     }
 
     if (flags.list) {
-      for (const key in mybkc.config.profiles) {
-        if ({}.hasOwnProperty.call(mybkc.config.profiles, key)) {
-          const profile = mybkc.config.profiles[key];
+      this.log('Saved profiles:');
+      this.log('');
+      for (const key in this.mybkc.config.profiles) {
+        if ({}.hasOwnProperty.call(this.mybkc.config.profiles, key)) {
+          const profile = this.mybkc.config.profiles[key];
           this.printProfile(profile);
         }
       }

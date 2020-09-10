@@ -26,7 +26,7 @@ export default class Link extends BkcCommand {
       const data = {
         url: flags.url,
       } as any;
-      if (flags.tags) data.tags = flags.tags.split(/[,\W]/);
+      if (flags.tags) data.tags = flags.tags.split(/[, ]/);
       const response = await this.mybkc?.makeRequest('/api/links', { method: 'POST', data });
       const link = await response.json();
       this.log(`Added link ${link.title} (${link.url})`);

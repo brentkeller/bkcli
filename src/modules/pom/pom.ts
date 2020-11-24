@@ -12,6 +12,7 @@ export interface SessionConfig {
 
 interface SessionProgress {
   text: string;
+  timeText: string;
   mode: string;
   remainingMins: number;
   remainingSecs: number;
@@ -69,13 +70,15 @@ export class PomSession {
     const remainingSecs = differenceInSeconds(this.end, currentTime) % 60;
 
     const label = this.currentMode === 'session' ? 'Session' : 'Break';
-    const text = `${label} remaining: ${remainingMins}:${remainingSecs
-      .toString()
-      .padStart(2, '0')}`;
+    const remainingMinsStr = remainingMins.toString().padStart(2, ' ');
+    const remainingSecsStr = remainingSecs.toString().padStart(2, '0');
+    const timeText = `${remainingMinsStr}:${remainingSecsStr}`;
+    const text = `${label} remaining: ${timeText}`;
     const soundAlert = !this.quiet && remainingMins === 0 && remainingSecs === 0;
     const finished = this.currentMode === 'break' && remainingMins === 0 && remainingSecs === 0;
     const result = {
       text,
+      timeText,
       remainingMins,
       remainingSecs,
       soundAlert,

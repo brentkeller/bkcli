@@ -74,6 +74,7 @@ export default class Pom extends PomCommand {
     const current = session.getProgress();
     // TODO: Change color of time output based on time remaining?
     self.writeUpdate(current.text);
+    process.title = `${current.mode}: ${current.timeText}`;
     // TODO: Play 10% remaining warning sound?
     if (current.soundAlert) {
       // This seems to have a lag, probably because the sound isn't preloaded

@@ -82,7 +82,7 @@ generate the daily entries for the given month`,
     if (isFriday(date)) this.writeLine(' 9a Write up weekly progress');
     if (isFriday(date)) this.writeLine(' 11a Weekly meeting');
     if (isWednesday(date)) this.writeLine(' 11a Sprint check-in');
-    if (this.isSchoolDay(date)) this.writeLine(' 3:50p Meli school bus');
+    if (this.isSchoolDay(date)) this.writeLine(' 4:05p Meli school bus');
     if (this.isBowlingDay(date)) this.writeLine(' 7p Bowling');
     if (isWednesday(date)) this.writeLine(' 9p Trash');
   }

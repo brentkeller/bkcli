@@ -25,7 +25,7 @@ export default class PomList extends PomCommand {
     const response = await this.mybkc?.makeRequest('/api/pomodoro', {
       method: 'get',
     } as FetchParams);
-    const poms = await response.json();
+    const poms = await response?.data;
     this.log(poms);
   }
 }

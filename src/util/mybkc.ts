@@ -1,6 +1,6 @@
 import path = require('path');
 import cli from 'cli-ux';
-import fetch from 'node-fetch';
+import axios from 'axios';
 import { getJsonFromFile, writeJsonToFile } from './file';
 
 export interface MyBKCProfile {
@@ -87,14 +87,14 @@ export class MyBKC {
   }
 
   async authenticate(url: string, email: string, password: string): Promise<string> {
-    const response = await fetch(`${url}/api/auth/login`, {
+    const response = await axios({
+      url: `${url}/api/auth/login`,
       method: 'post',
-      body: JSON.stringify({ email, password }),
+      data: { email, password },
       headers: { 'Content-Type': 'application/json' },
     });
-    // node-fetch allows raw access to the set-cookie header
     let authCookie;
-    response.headers.raw()['set-cookie'].forEach((c: string) => {
+    response.headers['set-cookie']?.forEach((c: string) => {
       if (c.includes('Authorization=')) authCookie = c;
     });
     if (!authCookie) throw new Error('Could not authenticate!');
@@ -104,6 +104,7 @@ export class MyBKC {
   async makeRequest(url: string, options: FetchParams) {
     const profile = await this.getCurrentProfile();
     const reqOpts = {
+      url: `${profile.url}${url}`,
       method: options.method,
       headers: {
         'Content-Type': 'application/json',
@@ -111,6 +112,6 @@ export class MyBKC {
       },
     } as any;
     if (options.data) reqOpts.body = JSON.stringify(options.data);
-    return fetch(`${profile.url}${url}`, reqOpts);
+    return axios(reqOpts);
   }
 }

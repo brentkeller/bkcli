@@ -1,4 +1,4 @@
-import Command from '@oclif/command';
+import { Command } from '@oclif/core';
 import * as readline from 'readline';
 import * as path from 'path';
 import { getJsonFromFile, writeJsonToFile } from './util/file';

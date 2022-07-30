@@ -1,4 +1,4 @@
-import { flags } from '@oclif/command';
+import { Flags } from '@oclif/core';
 import * as clipboardy from 'clipboardy';
 import {
   format,
@@ -22,7 +22,7 @@ generate the daily entries for the given month`,
   ];
 
   static flags = {
-    help: flags.help({ char: 'h' }),
+    help: Flags.help({ char: 'h' }),
   };
 
   static args = [
@@ -33,7 +33,7 @@ generate the daily entries for the given month`,
   output = '';
 
   async run() {
-    const { args } = this.parse(Month);
+    const { args } = await this.parse(Month);
     const month = this.getMonth(args.month);
     if (month < 0) this.error('Invalid month!');
     const year = args.year ?? new Date().getFullYear();

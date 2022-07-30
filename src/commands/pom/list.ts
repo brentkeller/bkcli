@@ -1,4 +1,4 @@
-import { flags } from '@oclif/command';
+import { Flags } from '@oclif/core';
 import PomCommand from '../../modules/pom/pom-command';
 import { FetchParams } from '../../util/mybkc';
 
@@ -16,7 +16,7 @@ export default class PomList extends PomCommand {
   ];
 
   static flags = {
-    help: flags.help({ char: 'h', description: 'show help for this command' }),
+    help: Flags.help({ char: 'h', description: 'show help for this command' }),
   };
 
   async run() {

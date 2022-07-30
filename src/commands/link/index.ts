@@ -1,4 +1,4 @@
-import { flags } from '@oclif/command';
+import { Flags } from '@oclif/core';
 import BkcCommand from '../../bkc-command-base';
 
 export default class Link extends BkcCommand {
@@ -7,19 +7,19 @@ export default class Link extends BkcCommand {
   static examples = [`$ bk link -u <url>`, `$ bk link -u <url> -t tag1,tag2`];
 
   static flags = {
-    help: flags.help({ char: 'h', description: 'show help for this command' }),
-    url: flags.string({
+    help: Flags.help({ char: 'h', description: 'show help for this command' }),
+    url: Flags.string({
       char: 'u',
       description: 'url to save',
     }),
-    tags: flags.string({
+    tags: Flags.string({
       char: 't',
       description: 'comma-separated list of tags',
     }),
   };
 
   async run() {
-    const { flags } = this.parse(Link);
+    const { flags } = await this.parse(Link);
 
     // URL provided, save a link
     if (flags.url) {
@@ -28,7 +28,7 @@ export default class Link extends BkcCommand {
       } as any;
       if (flags.tags) data.tags = flags.tags.split(/[, ]/);
       const response = await this.mybkc?.makeRequest('/api/links', { method: 'POST', data });
-      const link = await response.json();
+      const link = await response?.data;
       this.log(`Added link ${link.title} (${link.url})`);
     }
   }

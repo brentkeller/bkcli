@@ -1,4 +1,4 @@
-import { flags } from '@oclif/command';
+import { Flags } from '@oclif/core';
 import GoCommand from '../../go/go-command';
 
 /*
@@ -32,13 +32,13 @@ Should be used by a shell script to make navigation shortcuts
   ];
 
   static flags = {
-    help: flags.help({ char: 'h' }),
+    help: Flags.help({ char: 'h' }),
   };
 
   static args = [{ name: 'name' }];
 
   async run() {
-    const { args } = this.parse(Go);
+    const { args } = await this.parse(Go);
 
     const data = await this.getData();
     if (args.name) {

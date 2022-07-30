@@ -1,4 +1,4 @@
-import { flags } from '@oclif/command';
+import { Flags } from '@oclif/core';
 import * as nodeNotifier from 'node-notifier';
 import PomCommand from '../../modules/pom/pom-command';
 import { PomSession } from '../../modules/pom/pom';
@@ -21,24 +21,24 @@ export default class Pom extends PomCommand {
   ];
 
   static flags = {
-    help: flags.help({ char: 'h', description: 'show help for this command' }),
-    task: flags.string({
+    help: Flags.help({ char: 'h', description: 'show help for this command' }),
+    task: Flags.string({
       char: 't',
       description: 'description of work being done in this session',
     }),
-    category: flags.string({
+    category: Flags.string({
       char: 'c',
       description: 'name of category to group sessions together',
     }),
-    quiet: flags.boolean({
+    quiet: Flags.boolean({
       char: 'q',
       description: 'quiet mode: no alert when the session or break end',
     }),
-    noLog: flags.boolean({
+    noLog: Flags.boolean({
       char: 'n',
       description: "no log: don't persist this session after it ends",
     }),
-    debug: flags.boolean({
+    debug: Flags.boolean({
       char: 'd',
       description: 'debug mode: use 5 second session & break length for rapid testing',
     }),
@@ -47,7 +47,7 @@ export default class Pom extends PomCommand {
   currentTimer?: NodeJS.Timeout = undefined;
 
   async run() {
-    const { args, flags } = this.parse(Pom);
+    const { args, flags } = await this.parse(Pom);
 
     // Validate flags
     if (!args.session || args.session < 1) {

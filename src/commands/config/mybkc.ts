@@ -1,4 +1,4 @@
-import { flags } from '@oclif/command';
+import { Flags } from '@oclif/core';
 import CommandBase from '../../command-base';
 import { MyBKC, MyBKCProfile } from '../../util/mybkc';
 
@@ -12,20 +12,20 @@ TODO: Document this
   ];
 
   static flags = {
-    help: flags.help({ char: 'h' }),
-    delete: flags.string({ char: 'd', description: 'delete a profile' }),
-    list: flags.boolean({ char: 'l', description: 'list available profiles' }),
-    new: flags.boolean({ char: 'n', description: 'add a new profile' }),
+    help: Flags.help({ char: 'h' }),
+    delete: Flags.string({ char: 'd', description: 'delete a profile' }),
+    list: Flags.boolean({ char: 'l', description: 'list available profiles' }),
+    new: Flags.boolean({ char: 'n', description: 'add a new profile' }),
     // TODO: implement config:mybkc refresh
-    refresh: flags.string({ char: 'r', description: 'refresh authentication for a profile' }),
-    current: flags.boolean({ char: 'c', description: 'show the current profile' }),
-    set: flags.string({ char: 's', description: 'set the current profile' }),
+    refresh: Flags.string({ char: 'r', description: 'refresh authentication for a profile' }),
+    current: Flags.boolean({ char: 'c', description: 'show the current profile' }),
+    set: Flags.string({ char: 's', description: 'set the current profile' }),
   };
 
   mybkc?: MyBKC;
 
   async run() {
-    const { flags } = this.parse(MyBKCIndex);
+    const { flags } = await this.parse(MyBKCIndex);
 
     this.mybkc = new MyBKC(this.config.dataDir);
     await this.mybkc.init();

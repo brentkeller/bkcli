@@ -1,4 +1,4 @@
-import { flags } from '@oclif/command';
+import { Flags } from '@oclif/core';
 import CommandBase from '../command-base';
 import { getJsonFromFile, fileExists } from '../util/file';
 
@@ -12,13 +12,13 @@ import all data from the source file
   ];
 
   static flags = {
-    help: flags.help({ char: 'h' }),
+    help: Flags.help({ char: 'h' }),
   };
 
   static args = [{ name: 'source' }];
 
   async run() {
-    const { args } = this.parse(Import);
+    const { args } = await this.parse(Import);
 
     if ((args.source?.length ?? 0) < 1) this.error('Import source is required!');
 

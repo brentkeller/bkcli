@@ -1,4 +1,4 @@
-import { flags } from '@oclif/command';
+import { Flags } from '@oclif/core';
 import { getShortcuts } from '../../go/go';
 import GoCommand from '../../go/go-command';
 import { fileExists } from '../../util/file';
@@ -16,15 +16,15 @@ list invalid shortcuts with removing
   ];
 
   static flags = {
-    help: flags.help({ char: 'h' }),
-    safe: flags.boolean({
+    help: Flags.help({ char: 'h' }),
+    safe: Flags.boolean({
       char: 's',
       description: 'Safe mode: list invalid shortcuts without removing',
     }),
   };
 
   async run() {
-    const { flags } = this.parse(Cleanup);
+    const { flags } = await this.parse(Cleanup);
 
     const data = await this.getData();
     const shortcuts = getShortcuts(data.shortcuts);

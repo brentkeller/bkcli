@@ -1,4 +1,4 @@
-import { flags } from '@oclif/command';
+import { Flags } from '@oclif/core';
 import CommandBase from '../command-base';
 import { writeJsonToFile } from '../util/file';
 
@@ -12,13 +12,13 @@ export all data as json to the destination
   ];
 
   static flags = {
-    help: flags.help({ char: 'h' }),
+    help: Flags.help({ char: 'h' }),
   };
 
   static args = [{ name: 'destination' }];
 
   async run() {
-    const { args } = this.parse(Export);
+    const { args } = await this.parse(Export);
 
     if ((args.destination?.length ?? 0) < 1) {
       this.error('Export destination is required!');

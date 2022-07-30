@@ -1,4 +1,4 @@
-import { flags } from '@oclif/command';
+import { Flags } from '@oclif/core';
 import GoCommand from '../../go/go-command';
 
 export default class Add extends GoCommand {
@@ -14,13 +14,13 @@ add a shortcut named <name> pointing to the <path> directory
   ];
 
   static flags = {
-    help: flags.help({ char: 'h' }),
+    help: Flags.help({ char: 'h' }),
   };
 
   static args = [{ name: 'name' }, { name: 'path' }];
 
   async run() {
-    const { args } = this.parse(Add);
+    const { args } = await this.parse(Add);
 
     if (args.name) {
       const data = await this.getData();

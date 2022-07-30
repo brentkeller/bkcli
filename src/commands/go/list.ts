@@ -1,4 +1,4 @@
-import { flags } from '@oclif/command';
+import { Flags } from '@oclif/core';
 import GoCommand from '../../go/go-command';
 
 export default class List extends GoCommand {
@@ -20,15 +20,15 @@ list shortcuts whose name contains 'st' AND path contains 'dev'
   ];
 
   static flags = {
-    help: flags.help({ char: 'h' }),
+    help: Flags.help({ char: 'h' }),
     // flag with a value (-n, --name=VALUE)
-    name: flags.string({ char: 'n', description: 'shortcut name contains <NAME>' }),
+    name: Flags.string({ char: 'n', description: 'shortcut name contains <NAME>' }),
     // flag with a value (-p, --path=VALUE)
-    path: flags.string({ char: 'p', description: 'shortcut path contains <PATH>' }),
+    path: Flags.string({ char: 'p', description: 'shortcut path contains <PATH>' }),
   };
 
   async run() {
-    const { flags } = this.parse(List);
+    const { flags } = await this.parse(List);
 
     const data = await this.getData();
     this.listShortcuts(data.shortcuts, flags);

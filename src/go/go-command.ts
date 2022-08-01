@@ -1,5 +1,5 @@
 import Command from '../command-base';
-import {CliUx} from '@oclif/core';
+import { CliUx } from '@oclif/core';
 import { getShortcuts, Shortcuts } from './go';
 
 export default abstract class extends Command {
@@ -34,7 +34,7 @@ export default abstract class extends Command {
         },
       },
       {
-        printLine: this.log,
+        printLine: this.log.bind(this),
         ...flags, // parsed flags
       },
     );

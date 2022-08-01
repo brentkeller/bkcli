@@ -1,5 +1,5 @@
 import path = require('path');
-import cli from 'cli-ux';
+import {CliUx} from '@oclif/core';
 import axios from 'axios';
 import { getJsonFromFile, writeJsonToFile } from './file';
 
@@ -58,10 +58,10 @@ export class MyBKC {
   }
 
   async newProfile(): Promise<MyBKCProfile> {
-    const name = await cli.prompt('Profile name?');
-    const url = await cli.prompt('Url? (e.g. http://localhost:5000)');
-    const email = await cli.prompt('Login email?');
-    const password = await cli.prompt('Login password?', { type: 'hide' });
+    const name = await CliUx.ux.prompt('Profile name?');
+    const url = await CliUx.ux.prompt('Url? (e.g. http://localhost:5000)');
+    const email = await CliUx.ux.prompt('Login email?');
+    const password = await CliUx.ux.prompt('Login password?', { type: 'hide' });
     const authCookie = await this.authenticate(url, email, password);
 
     return {

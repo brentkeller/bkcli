@@ -1,5 +1,5 @@
 import Command from '../command-base';
-import { cli } from 'cli-ux';
+import {CliUx} from '@oclif/core';
 import { getShortcuts, Shortcuts } from './go';
 
 export default abstract class extends Command {
@@ -22,7 +22,7 @@ export default abstract class extends Command {
       return;
     }
     this.log('Available shortcuts:');
-    cli.table(
+    CliUx.ux.table(
       shortcuts,
       {
         name: {

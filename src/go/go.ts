@@ -3,6 +3,7 @@ export interface Shortcuts {
 }
 
 export interface Shortcut {
+  [key: string]: string;
   name: string;
   path: string;
 }

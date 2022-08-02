@@ -60,12 +60,12 @@
   "repository": "brentkeller/bkcli",
   "scripts": {
     "build": "rimraf lib && tsc -b",
+    "dev": "rimraf lib && tsc -w",
     "lint": "eslint . --ext .ts --config .eslintrc",
     "prepack": "yarn build && oclif manifest && oclif readme",
     "postpack": "rimraf oclif.manifest.json",
     "test": "echo NO TESTS",
-    "updatereadme": "oclif manifest && oclif readme",
-    "version": "oclif readme && git add README.md"
+    "updatereadme": "oclif manifest && oclif readme"
   },
   "types": "lib/index.d.ts"
 }

@@ -62,10 +62,10 @@
     "build": "rimraf lib && tsc -b",
     "dev": "rimraf lib && tsc -w",
     "lint": "eslint . --ext .ts --config .eslintrc",
-    "prepack": "yarn build && oclif manifest && oclif readme",
+    "prepack": "yarn build && yarn updatereadme",
     "postpack": "rimraf oclif.manifest.json",
     "test": "echo NO TESTS",
-    "updatereadme": "oclif manifest && oclif readme"
+    "updatereadme": "oclif manifest && oclif readme --no-aliases"
   },
   "types": "lib/index.d.ts"
 }

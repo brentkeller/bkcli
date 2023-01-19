@@ -45,6 +45,7 @@ export default class Pom extends PomCommand {
   };
 
   currentTimer?: NodeJS.Timeout = undefined;
+  resolveTimerPromise?: (value: unknown) => void = undefined;
 
   async run() {
     const { args, flags } = await this.parse(Pom);
@@ -67,6 +68,11 @@ export default class Pom extends PomCommand {
       debug: flags.debug,
     });
     this.currentTimer = setInterval(this.processTick, 500, session, this);
+    // Await a promise that will continue until our session ends
+    // This avoids a timeout mechanism built in to oclif: https://github.com/oclif/core/issues/464
+    await new Promise((resolve, _reject) => {
+      this.resolveTimerPromise = resolve;
+    });
   }
 
   async processTick(session: PomSession, self: Pom) {
@@ -89,6 +95,7 @@ export default class Pom extends PomCommand {
     self.writeUpdate('Session finished!');
     // TODO: Persist session info to log
     // const log = session.getLog();
+    if (this.resolveTimerPromise != null) this.resolveTimerPromise(null);
   }
 
   notify(title: string, message: string) {

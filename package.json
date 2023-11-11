@@ -10,7 +10,7 @@
   "dependencies": {
     "@oclif/core": "^1.13.0",
     "@oclif/plugin-help": "^5.1.12",
-    "axios": "^0.27.2",
+    "axios": "^1.6.0",
     "clipboardy": "^2.3.0",
     "date-fns": "^2.21.3",
     "fs-extra": "^10.0.0",
